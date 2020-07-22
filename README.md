@@ -24,8 +24,8 @@ to do so.
 Run the following Commands on you preferred shell 
 ```sh
 git clone https://github.com/WalterBanda/arch-systemd-wsl-script.git
-cd ubuntu-wsl2-systemd-script/
-bash ubuntu-wsl2-systemd-script.sh
+cd arch-systemd-wsl-script/
+bash arch-systemd-wsl-script.sh
 # Enter your password and wait until the script has finished
 ```
 If you don't get an error 🌋 and see a list of units, the script worked.
