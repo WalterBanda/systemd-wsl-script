@@ -4,6 +4,7 @@
 ![Issues](https://img.shields.io/github/issues/WalterBanda/arch-systemd-wsl-script)
 ![Generic badge](https://img.shields.io/badge/made-with💖-blue.svg)
 ![Bash Shell](https://badges.frapsoft.com/bash/v1/bash.png?v=103)
+![Stars](https://img.shields.io/github/stars/WalterBanda/arch-systemd-wsl-script)
 
 Scripts that enables systemd support on Arch Linux WSL2 images .
 I am not liable for any broken installations ☠ headaches or heartbreaks 💔 from system errors ☣.  
