@@ -72,6 +72,7 @@ EOF
 
 if ! grep 'start-systemd-namespace' /etc/bash.bashrc >/dev/null; then
   sudo sed -i 2a"# Start or enter a PID namespace in WSL2\nsource /usr/sbin/start-systemd-namespace\n" /etc/bash.bashrc
+  sudo sed -i 2a"# Start or enter a PID namespace in WSL2\nsource /usr/sbin/start-systemd-namespace\n" /etc/profile.d/wsl.sh
 fi
 
 sudo rm -f /etc/systemd/user/sockets.target.wants/dirmngr.socket
