@@ -56,9 +56,11 @@ fi
 
 yay -S fontconfig daemonize
 
-sudo cp "$self_dir/start-systemd-namespace" /usr/sbin/start-systemd-namespace
-sudo cp "$self_dir/enter-systemd-namespace" /usr/sbin/enter-systemd-namespace
-sudo chmod +x /usr/sbin/enter-systemd-namespace
+sudo cp "$self_dir/start-systemd-alt" /usr/sbin/start-systemd-namespace
+# Uncomment if script are not working
+# sudo cp "$self_dir/start-systemd-namespace" /usr/sbin/start-systemd-namespace
+# sudo cp "$self_dir/enter-systemd-namespace" /usr/sbin/enter-systemd-namespace
+# sudo chmod +x /usr/sbin/enter-systemd-namespace
 
 sudo tee /etc/sudoers.d/systemd-namespace >/dev/null <<EOF
 Defaults        env_keep += WSLPATH
@@ -70,10 +72,11 @@ Defaults        env_keep += PRE_NAMESPACE_PWD
 %wheel ALL=(ALL) NOPASSWD: /usr/sbin/enter-systemd-namespace
 EOF
 
-if ! grep 'start-systemd-namespace' /etc/bash.bashrc >/dev/null; then
-  sudo sed -i 2a"# Start or enter a PID namespace in WSL2\nsource /usr/sbin/start-systemd-namespace\n" /etc/bash.bashrc
-  sudo sed -i 2a"# Start or enter a PID namespace in WSL2\nsource /usr/sbin/start-systemd-namespace\n" /etc/profile.d/wsl.sh
-fi
+sudo cp "$self_dir/profile-wsl.sh" /etc/profile.d/wsl.sh
+# If U use only bash uncomment below 😊
+# if ! grep 'start-systemd-namespace' /etc/bash.bashrc >/dev/null; then
+#   sudo sed -i 2a"# Start or enter a PID namespace in WSL2\nSYSTEMD_PID=$(ps -ef | grep '/lib/systemd/systemd --system-unit=basic.target$' | grep -v unshare | awk '{print $2}')\nif [  -z "$SYSTEMD_PID" ]; then\n    source /usr/sbin/start-systemd-namespace\nelse\n    echo "Systemd Running 🚥🚀"\nfi\n" /etc/bash.bashrc
+# fi
 
 sudo rm -f /etc/systemd/user/sockets.target.wants/dirmngr.socket
 sudo rm -f /etc/systemd/user/sockets.target.wants/gpg-agent*.socket
